@@ -10,6 +10,14 @@ public class RedistribucionViandas extends Contribucion {
   private Integer cantidadViandas;
   private String motivo;
 
+  public Integer getCantidadViandas() {
+    return cantidadViandas;
+  }
+
+  public void setCantidadViandas(Integer cantidadViandas) {
+    this.cantidadViandas = cantidadViandas;
+  }
+
   @Override
   public void registrarContribucion() {
     for (int i = 0; i < cantidadViandas; i++) {

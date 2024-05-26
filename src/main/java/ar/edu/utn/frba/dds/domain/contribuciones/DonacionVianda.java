@@ -8,6 +8,22 @@ public class DonacionVianda extends Contribucion {
   private Vianda viandaParaDonar;
   private Heladera heladeraEnLaQueSeVaAEncontrar;
 
+  public Heladera getHeladeraEnLaQueSeVaAEncontrar() {
+    return heladeraEnLaQueSeVaAEncontrar;
+  }
+
+  public void setHeladeraEnLaQueSeVaAEncontrar(Heladera heladeraEnLaQueSeVaAEncontrar) {
+    this.heladeraEnLaQueSeVaAEncontrar = heladeraEnLaQueSeVaAEncontrar;
+  }
+
+  public Vianda getViandaParaDonar() {
+    return viandaParaDonar;
+  }
+
+  public void setViandaParaDonar(Vianda viandaParaDonar) {
+    this.viandaParaDonar = viandaParaDonar;
+  }
+
   @Override
   public void registrarContribucion() {
     heladeraEnLaQueSeVaAEncontrar.agregarVianda(viandaParaDonar);
