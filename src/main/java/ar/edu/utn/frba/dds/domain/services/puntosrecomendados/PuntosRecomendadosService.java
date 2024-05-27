@@ -6,6 +6,8 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface PuntosRecomendadosService {
+  @GET("puntosRecomendados/1")
+  Call<ListadoDePuntosRecomendados> puntosRecomendados();
   @GET("puntosRecomendados")
   Call<ListadoDePuntosRecomendados> puntosRecomendados(@Query("latitud") String latitud,
                                                           @Query("longitud") String longitud,

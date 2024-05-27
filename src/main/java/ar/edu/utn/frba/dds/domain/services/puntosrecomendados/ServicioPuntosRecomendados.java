@@ -9,7 +9,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServicioPuntosRecomendados {
   private static ServicioPuntosRecomendados instancia = null;
-  private static final String URL = "https://ca6b909d-c185-4f0a-95cf-f98cf0ac449b.mock.pstmn.io/";
+  //private static final String URL = "https://ca6b909d-c185-4f0a-95cf-f98cf0ac449b.mock.pstmn.io/";
+  private static final String URL = "https://40dc4237-e6e5-4855-91e6-cbb6f7b067a9.mock.pstmn.io/api/";
   private Retrofit retrofit;
 
 
@@ -26,6 +27,15 @@ public class ServicioPuntosRecomendados {
     return instancia;
   }
 
+  public ListadoDePuntosRecomendados listadoDePuntosRecomendados() throws IOException {
+    PuntosRecomendadosService puntosRecomendadosService =
+            this.retrofit.create(PuntosRecomendadosService.class);
+    Call<ListadoDePuntosRecomendados> requestPuntosRecomendados =
+            puntosRecomendadosService.puntosRecomendados();
+    Response<ListadoDePuntosRecomendados> responsePuntosRecomendados =
+            requestPuntosRecomendados.execute();
+    return responsePuntosRecomendados.body();
+  }
   public ListadoDePuntosRecomendados listadoDePuntosRecomendados(String latitud,
                                                                  String longitud,
                                                                  String radio) throws IOException {
