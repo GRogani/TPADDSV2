@@ -1,8 +1,12 @@
 package ar.edu.utn.frba.dds.domain.elementos;
 
 import ar.edu.utn.frba.dds.domain.datos.Ubicacion;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDate;
 import java.util.List;
+
 
 public class Heladera {
   private List<Vianda> viandas;

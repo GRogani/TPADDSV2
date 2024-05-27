@@ -3,11 +3,14 @@ package ar.edu.utn.frba.dds.domain.elementos;
 import ar.edu.utn.frba.dds.domain.tipodecolaborador.Humano;
 import ar.edu.utn.frba.dds.domain.tipodecolaborador.Juridico;
 import ar.edu.utn.frba.dds.domain.usuarios.Colaborador;
+import lombok.Setter;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
-public class CalculadorDePuntos {//TODO Hacer configurable
+@Setter
+public class CalculadorDePuntos {//
   private double coeficienteDonarPesos = 0.5;
   private double coeficienteViandasDistribuidas = 1;
   private double coeficienteViandasDonadas = 1.5;
@@ -25,11 +28,12 @@ public class CalculadorDePuntos {//TODO Hacer configurable
 
         long diferenciaEnMeses = hoy.until(puestaEnMarcha, ChronoUnit.MONTHS);
         sumatoriaDeMesesActivos += diferenciaEnMeses;
-        
+
         return colaborador.getTipo().getPesosDonados() * coeficienteDonarPesos
             + sumatoriaDeMesesActivos * coeficienteHeladerasActivas * heladeras.size();
       }
     }
+
     return colaborador.getTipo().getPesosDonados() * coeficienteDonarPesos
           + ((Humano) colaborador.getTipo()).getViandasDistribuidas()
         * coeficienteViandasDistribuidas
