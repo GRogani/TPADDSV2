@@ -11,8 +11,11 @@ import java.util.List;
 public class Heladera {
   private List<Vianda> viandas;
   private Integer capacidad;
+  @Getter
   private Ubicacion ubicacion;
+  @Setter
   private Boolean estaActiva;
+  @Getter
   private LocalDate fechaPuestaEnFuncionamiento;
   private LocalDate fechaFinalizacionFuncionamiento;
 
@@ -24,15 +27,5 @@ public class Heladera {
     return viandas.remove(0);
   }
 
-  public LocalDate getFechaPuestaEnFuncionamiento() {
-    return fechaPuestaEnFuncionamiento;
-  }
-
-  public void setEstaActiva(Boolean estaActiva) {
-    this.estaActiva = estaActiva;
-  }
-
-  public Ubicacion getUbicacion() {
-    return ubicacion;
-  }
 }
+

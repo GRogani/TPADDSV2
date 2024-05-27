@@ -17,22 +17,42 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class CargadorMasivoCSV {
+private String tipoDoc;
 
-  public void cargarDonantesDesdeCSV(String rutaArchivo) {
+private String numeroDoc;
+private String nombre ;
+private  String apellido ;
+private  String mail ;
+private LocalDate fechaColaboracion;
+private String formaColaboracion;
+private Integer cantidad;
+
+  public void parseadorCSV(String rutaArchivo) {
     String linea;
-
     try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
       while ((linea = br.readLine()) != null) {
         String[] datosColaborador = linea.split(",");
 
-        String tipoDoc = datosColaborador[0];
-        String numeroDoc = datosColaborador[1].toString();
-        String nombre = datosColaborador[2];
-        String apellido = datosColaborador[3];
-        String mail = datosColaborador[4];
-        LocalDate fechaColaboracion = LocalDate.parse(datosColaborador[5], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        String formaColaboracion = datosColaborador[6];
-        Integer cantidad = Integer.valueOf(datosColaborador[7]);
+        tipoDoc = datosColaborador[0];
+        numeroDoc = datosColaborador[1];
+        nombre = datosColaborador[2];
+        apellido = datosColaborador[3];
+        mail = datosColaborador[4];
+        fechaColaboracion = LocalDate.parse(datosColaborador[5], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        formaColaboracion = datosColaborador[6];
+        cantidad = Integer.parseInt(datosColaborador[7]);
+      }
+    } catch (IOException e) {
+        throw new RuntimeException(e);
+    }
+  }
+
+
+
+  public void cargarDonantesDesdeCSV(String rutaArchivo) {
+
+          parseadorCSV(rutaArchivo);
+
         if (usuarioYaExiste(numeroDoc, tipoDoc)) {
           Colaborador colaborador = encontrarColaborador(numeroDoc, tipoDoc);
           switch (formaColaboracion) {
@@ -112,10 +132,8 @@ public class CargadorMasivoCSV {
           notificarCredenciales(mail, colaborador);
           }
       }
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
+    
+
 
   private Colaborador encontrarColaborador(String numeroDoc, String tipoDoc) {
     //TODO Buscar el colaborador en la base de datos
